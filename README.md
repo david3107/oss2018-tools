@@ -1,11 +1,11 @@
 
 
-#Docker and emulator setup
+# Docker and emulator setup
 
 
 This document provides a steb by step guide on how to build the docker container, use Genymotion to emulate Android devices and use the container to run the test.
 
-##On the host machine
+## On the host machine
 
 1. Install [Genymotion "personal use"](https://www.genymotion.com/fun-zone/) and run an instance of Android
 2. Create a folder with the .apk 
@@ -13,28 +13,28 @@ This document provides a steb by step guide on how to build the docker container
 4. Run the image and mount the folder with APK and tests (see below)
 	
 	
-###Build the image using the Dockerfile 
+### Build the image using the Dockerfile 
 
 From the docker directory run
 
 `docker build -t "mobile_testing_automation:calabash_android" .`
 
-###Run the image and mount the folder with APK and tests
+### Run the image and mount the folder with APK and tests
 
 
 `docker run -v /PATH/TO/YOUR/FOLDER/WITH/APK/AND/TESTS:/masvs_automation --privileged  -i -t mobile_testing_automation:calabash_android /bin/bash`
 
 
 
-##From the container
+## From the container
 
-###Connect the emulator
+### Connect the emulator
 
 `adb connect IP_OF_THE_EMULATOR_ON_THE_HOST`
 
 To get the IP of the emulator run `adb devices -l` from the host machine.
 
-###Create the feature folder
+### Create the feature folder
 
 Run `calabash-android gen` to generate the feature folder
 
@@ -53,14 +53,14 @@ It will create a Cucumber skeleton in the current folder like this:
     
  where `my_first.feature` will contain the gherkin syntax and `calabash_steps.rb` will contain the Ruby code 
 
-###Run the test with Calabash
+### Run the test with Calabash
 
 `calabash-android run APP.apk`
 
 
-#Troubleshooting:
+# Troubleshooting:
 
-###TLS/ problem:
+### TLS/ problem:
 
 On the host machine run
 
